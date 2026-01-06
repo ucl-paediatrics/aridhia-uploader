@@ -14,13 +14,16 @@ Other than `azcopy`, this tool only requires Python standard libraries and does 
 ## Usage
 
 ### Adding, removing, or listing remotes
-- `python main.py add`: Interactively add a new upload destination. You will specify the name of the destination (something memorable) and the URL, which includes a SAS token.
-- `python main.py remove <name>`: Removes the remote with the specified name.
-- `python main.py clear`: Clears all saved remotes following a confirmation prompt.
-- `python main.py list`: Lists all saved remotes.
+
+aridhia-sync is a command line tool that allows you to manage multiple upload destinations (remotes). You can add, remove, clear, or list these remotes using the following commands:
+
+- `python aridhia-sync.py add`: Interactively add a new upload destination. You will specify the name of the destination (something memorable) and the URL, which includes a SAS token.
+- `python aridhia-sync.py remove <name>`: Removes the remote with the specified name.
+- `python aridhia-sync.py clear`: Clears all saved remotes following a confirmation prompt.
+- `python aridhia-sync.py list`: Lists all saved remotes.
 
 ### Uploading files
-`python main.py upload <destination_name> <file_path>`: Uploads the specified file to the specified destination.
+`python aridhia-sync.py upload <destination_name> <file_path>`: Uploads the specified file to the specified destination.
 
 If the file path is a directory, all files within that directory (and its subdirectories) will be uploaded, preserving the directory structure. Use `--dry-run` to see which files would be uploaded without actually uploading them.
 
