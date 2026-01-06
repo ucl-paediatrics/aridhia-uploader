@@ -1,0 +1,13 @@
+destinations.json
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+__pycache__/
+*.pyc
+.env
+
+# azcopy
+azcopy.exe
+azcopy
