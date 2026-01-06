@@ -111,6 +111,18 @@ def list_destinations():
     for dest in existing_destinations:
         print(f"- {dest.name}: {dest.url}")
 
+def update_destination(destination_name: str):
+    destinations = read_destinations_file()
+    matching_destination = next((dest for dest in destinations if dest.name == destination_name), None)
+    if not matching_destination:
+        print(f"No destination found with the name '{destination_name}'.")
+        return
+    new_url = input(f"Enter the new token URL for destination '{destination_name}': ")
+    matching_destination.url = new_url
+    with open(DESTINATIONS_FILE, "w") as f:
+        json.dump(destinations, f, indent=4, default=lambda o: o.to_json())
+    print(f"Destination '{destination_name}' updated successfully.")
+
 def upload_files(source: str, destination_name: str, dry_run: bool = False):
     destinations = read_destinations_file()
     matching_destination = next((dest for dest in destinations if dest.name == destination_name), None)
@@ -135,6 +147,8 @@ if __name__ == "__main__":
     parser_add = subparsers.add_parser("add", help="Add a new Aridhia destination.")
     parser_remove = subparsers.add_parser("remove", help="Remove an Aridhia destination.")
     parser_remove.add_argument("name", help="Name of the destination to remove.")
+    parser_update = subparsers.add_parser("update", help="Update an existing Aridhia destination.")
+    parser_update.add_argument("name", help="Name of the destination to update.")
     parser_clear = subparsers.add_parser("clear", help="Clear all Aridhia destinations.")
     parser_list = subparsers.add_parser("list", help="List all Aridhia destinations.")
     parser_upload = subparsers.add_parser("upload", help="Upload files to an Aridhia destination.")
@@ -156,3 +170,5 @@ if __name__ == "__main__":
         list_destinations()
     elif args.command == "upload":
         upload_files(args.source, args.destination, dry_run=args.dry_run)
+    elif args.command == "update":
+        update_destination(args.name)
