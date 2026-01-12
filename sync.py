@@ -154,19 +154,11 @@ def upload_files(source: str, destination_name: str, dry_run: bool = False):
         print(f"No destination found with the name '{destination_name}'.")
         return
     upload(
-<<<<<<< HEAD:aridhia-sync.py
         source, 
         matching_destination.url,  
         exclude_patterns=('*.exe', '.gitignore', '*.pyc'), 
         exclude_paths=('.git', '__pycache__', '.venv', '.pytest_cache', '.ruff_cache', '.vscode'),
         exclude_regexps=(r'.*\.egg-info.*',), 
-=======
-        source,
-        matching_destination.url,
-        exclude_patterns=('*.exe', '.gitignore', '*.pyc'),
-        exclude_paths=('.git', '__pycache__', '.venv'),
-        exclude_regexps=(r'.*\.egg-info.*',),
->>>>>>> c123ce884ee4cc28c46e265fae9885248de89140:sync.py
         dry_run=dry_run
     )
 
