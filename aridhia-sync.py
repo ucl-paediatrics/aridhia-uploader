@@ -133,7 +133,7 @@ def upload_files(source: str, destination_name: str, dry_run: bool = False):
         source, 
         matching_destination.url,  
         exclude_patterns=('*.exe', '.gitignore', '*.pyc'), 
-        exclude_paths=('.git', '__pycache__', '.venv'),
+        exclude_paths=('.git', '__pycache__', '.venv', '.pytest_cache', '.ruff_cache', '.vscode'),
         exclude_regexps=(r'.*\.egg-info.*',), 
         dry_run=dry_run
     )
