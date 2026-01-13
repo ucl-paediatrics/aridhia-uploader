@@ -39,7 +39,8 @@ def upload(
     """Upload files from source to destination using AzCopy."""
     if not os.path.exists(source):
         raise FileNotFoundError(f"Source path '{source}' does not exist.")
-    call_list = ["azcopy", "copy", source, destination_url]
+    call_list = ["azcopy"] if os.name == "nt" else ["./azcopy"]
+    call_list.extend(["copy", source, destination_url])
     if os.path.isdir(source):
         call_list.append("--recursive=true")
         print(f"Uploading directory '{source}' to '{destination_url}'...")
